@@ -1,10 +1,10 @@
-package youtube.services;
+package services.youtube;
 
-import common.RequestService;
+import core.common.RequestService;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import youtube.enums.YoutubeKey;
+import services.youtube.enums.YoutubeKey;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,19 +19,20 @@ import java.util.HashMap;
  * Facebook:    https://www.facebook.com/carlos.bedoy
  * ---------CODE && MUSIC ----------------------------------
  */
-public class YoutubeRequestService extends RequestService{
+public class YoutubeService extends RequestService{
 
-    public YoutubeRequestService()
+    public YoutubeService()
     {
         super();
         this.jsonParser                 = new JSONParser();
         this.dataModel                  = new ArrayList<Object>();
+        this.withAuthorization          = false;
     }
 
     @Override
     public String createUrl(String valueFormatted)
     {
-        return new String("https://gdata.youtube.com/feeds/api/videos?q="+valueFormatted+"&max-results=50&v=2&alt=jsonc");
+        return new String("https://gdata.services.youtube.com/feeds/api/videos?q="+valueFormatted+"&max-results=50&v=2&alt=jsonc");
     }
 
      @Override

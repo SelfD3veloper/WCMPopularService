@@ -1,4 +1,6 @@
-package common;
+package core.common;
+
+import java.util.List;
 
 /**
  * --------------------------------------------------------
@@ -10,5 +12,8 @@ package common;
  * Facebook:    https://www.facebook.com/carlos.bedoy
  * ---------CODE && MUSIC ----------------------------------
  */
-public interface InformationDelegate {
+public interface InformationHandler
+{
+    public void executeWithValue(String value);
+    public List<Object> getDataModel();
 }

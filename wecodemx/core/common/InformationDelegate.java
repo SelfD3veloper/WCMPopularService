@@ -1,4 +1,6 @@
-package common;
+package core.common;
+
+import java.util.List;
 
 /**
  * --------------------------------------------------------
@@ -10,5 +12,7 @@ package common;
  * Facebook:    https://www.facebook.com/carlos.bedoy
  * ---------CODE && MUSIC ----------------------------------
  */
-public interface InformationHandler {
+public interface InformationDelegate
+{
+    public void reloadDataWithData(List<Object> data);
 }

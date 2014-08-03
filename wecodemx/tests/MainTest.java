@@ -2,9 +2,11 @@ package tests;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import guice.Module;
-import youtube.enums.YoutubeKey;
-import youtube.services.YoutubeRequestService;
+import core.common.InformationHandler;
+import core.guice.Module;
+import services.bing.BingService;
+import services.youtube.YoutubeService;
+import services.youtube.enums.YoutubeKey;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,13 +22,14 @@ import java.util.Map;
  * Facebook:    https://www.facebook.com/carlos.bedoy
  * ---------CODE && MUSIC ----------------------------------
  */
-public class YoutubeMainTest {
+public class MainTest {
     public static void main(String[]WeCodeMx)
     {
+        InformationHandler informationHandler;
         Injector injector = Guice.createInjector(new Module());
-        YoutubeRequestService youtubeRequestService = injector.getInstance(YoutubeRequestService.class);
-        youtubeRequestService.executeWithValue("pokemon");
-        List<Object> dataModel = youtubeRequestService.getDataModel();
+        informationHandler = injector.getInstance(YoutubeService.class);
+        informationHandler.executeWithValue("pokemon");
+        List<Object> dataModel = informationHandler.getDataModel();
         for(Object data : dataModel)
         {
             HashMap<YoutubeKey, Object> information = (HashMap<YoutubeKey, Object>) data;
@@ -36,5 +39,8 @@ public class YoutubeMainTest {
                 System.out.println(entry.getKey() + " " + entry.getValue());
             }
         }
+        informationHandler = injector.getInstance(BingService.class);
+        informationHandler.executeWithValue("pokemon");
+
     }
 }
