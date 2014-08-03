@@ -7,6 +7,8 @@ import core.common.InformationHandler;
 import services.bing.BingService;
 import services.youtube.YoutubeService;
 import tests.MainTest;
+import utils.INotificationDelegate;
+import utils.NotificationCenter;
 
 /**
  * --------------------------------------------------------
@@ -23,6 +25,7 @@ public class Module extends AbstractModule {
     protected void configure() {
         this.bind(YoutubeService.class).in(Scopes.SINGLETON);
         this.bind(MainTest.class).in(Scopes.SINGLETON);
+        this.bind(NotificationCenter.class).in(Scopes.SINGLETON);
 
         this.bind(InformationHandler.class).annotatedWith(Names.named("services/youtube")).to(YoutubeService.class);
         this.bind(InformationHandler.class).annotatedWith(Names.named("services/bing")).to(BingService.class);
