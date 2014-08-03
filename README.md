@@ -1,7 +1,9 @@
-<<<<<<< HEAD
-CBPopularService
-================
-=======
-WCMPopularService
+
+##WCMPopularService
 =================
->>>>>>> origin/master
+
+
+###Developers:
+
+
+####

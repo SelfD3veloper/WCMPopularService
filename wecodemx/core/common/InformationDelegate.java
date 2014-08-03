@@ -1,8 +1,10 @@
-package youtube.interfaces;
+package core.common;
+
+import java.util.List;
 
 /**
  * --------------------------------------------------------
- * Created by Carlos Bedoy on 2/08/14.
+ * Created by Carlos Bedoy on 3/08/14.
  * CBYoutubeApi
  * Mobile Developer
  * Aguascalientes Mexico
@@ -10,5 +12,7 @@ package youtube.interfaces;
  * Facebook:    https://www.facebook.com/carlos.bedoy
  * ---------CODE && MUSIC ----------------------------------
  */
-public interface IYoutubeInformationHandler {
+public interface InformationDelegate
+{
+    public void reloadDataWithData(List<Object> data);
 }
