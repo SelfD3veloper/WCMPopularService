@@ -1,5 +1,8 @@
 package tests;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import guice.Module;
 import youtube.enums.YoutubeKey;
 import youtube.services.YoutubeRequestService;
 
@@ -20,15 +23,17 @@ import java.util.Map;
 public class YoutubeMainTest {
     public static void main(String[]WeCodeMx)
     {
-        YoutubeRequestService.getInstance().executeWithValue("pokemon");
-        List<Object> dataModel = YoutubeRequestService.getInstance().getDataModel();
+        Injector injector = Guice.createInjector(new Module());
+        YoutubeRequestService youtubeRequestService = injector.getInstance(YoutubeRequestService.class);
+        youtubeRequestService.executeWithValue("pokemon");
+        List<Object> dataModel = youtubeRequestService.getDataModel();
         for(Object data : dataModel)
         {
             HashMap<YoutubeKey, Object> information = (HashMap<YoutubeKey, Object>) data;
             System.out.println("-------------------------------------------------------");
             for(Map.Entry<YoutubeKey, Object> entry : information.entrySet())
             {
-                System.out.println(entry.getKey()+" "+entry.getValue());
+                System.out.println(entry.getKey() + " " + entry.getValue());
             }
         }
     }

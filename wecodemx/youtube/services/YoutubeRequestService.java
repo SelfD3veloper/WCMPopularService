@@ -1,19 +1,13 @@
 package youtube.services;
 
+import common.RequestService;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import youtube.enums.YoutubeKey;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * --------------------------------------------------------
@@ -25,68 +19,23 @@ import java.util.List;
  * Facebook:    https://www.facebook.com/carlos.bedoy
  * ---------CODE && MUSIC ----------------------------------
  */
-public class YoutubeRequestService{
+public class YoutubeRequestService extends RequestService{
 
-    private URLConnection               urlConnection;
-    private BufferedReader              bufferedReader;
-    private String                      response;
-    private URL                         url;
-    private JSONParser                  jsonParser;
-    private Object                      objectParsed;
-    private JSONObject                  jsonObject;
-    private static YoutubeRequestService instance;
-    private List<Object>                dataModel;
-    private String                      updated;
-    public static YoutubeRequestService getInstance()
+    public YoutubeRequestService()
     {
-        if(instance == null)
-            instance = new YoutubeRequestService();
-        return instance;
-    }
-
-    private YoutubeRequestService()
-    {
+        super();
         this.jsonParser                 = new JSONParser();
         this.dataModel                  = new ArrayList<Object>();
     }
 
-
-    private void executeRequest(String requestLink){
-        try {
-            url                     = new URL(requestLink);
-            urlConnection           = url.openConnection();
-            bufferedReader          = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-            response                = bufferedReader.readLine();
-            objectParsed            = jsonParser.parse(response);
-            jsonObject              = (JSONObject)objectParsed;
-            dataModel.clear();
-            parseData(jsonObject);
-        } catch (MalformedURLException ex) {
-
-        } catch (IOException ex) {
-
-        } catch (org.json.simple.parser.ParseException e) {
-
-        }
-
-    }
-
-    public void executeWithValue(String value)
-    {
-        executeRequest(createUrl(validateValue(value)));
-    }
-
-    private String createUrl(String valueFormatted)
+    @Override
+    public String createUrl(String valueFormatted)
     {
         return new String("https://gdata.youtube.com/feeds/api/videos?q="+valueFormatted+"&max-results=50&v=2&alt=jsonc");
     }
 
-    private String validateValue(String value)
-    {
-        return value.contains(" ")?value.replace(" ", "%20"):value;
-    }
-
-    private void parseData(JSONObject requestObject){
+     @Override
+     public void parseData(JSONObject requestObject){
         this.jsonObject                         = (JSONObject) requestObject.get("data");
         this.updated                            = (String) jsonObject.get("updated");
         JSONArray jsonArray                     = (JSONArray) jsonObject.get("items");
@@ -119,11 +68,6 @@ public class YoutubeRequestService{
                 dataModel.add(information);
             }
         }
-    }
-
-    public List<Object> getDataModel()
-    {
-        return this.dataModel;
     }
 
 }

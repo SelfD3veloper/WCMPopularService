@@ -1,7 +1,4 @@
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
-import guice.Module;
+package common;
 
 /**
  * --------------------------------------------------------
@@ -13,8 +10,5 @@ import guice.Module;
  * Facebook:    https://www.facebook.com/carlos.bedoy
  * ---------CODE && MUSIC ----------------------------------
  */
-public class Main {
-    public static void main(String[]WeCodeMx){
-        Injector injector = Guice.createInjector(new Module());
-    }
+public interface InformationDelegate {
 }
