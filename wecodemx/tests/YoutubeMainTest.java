@@ -18,7 +18,7 @@ import java.util.Map;
  * ---------CODE && MUSIC ----------------------------------
  */
 public class YoutubeMainTest {
-    public static void main(String[]cbedoy)
+    public static void main(String[]WeCodeMx)
     {
         YoutubeRequestService.getInstance().executeWithValue("pokemon");
         List<Object> dataModel = YoutubeRequestService.getInstance().getDataModel();
