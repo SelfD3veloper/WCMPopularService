@@ -57,14 +57,18 @@ public abstract class RequestService implements  InformationHandler
             jsonObject              = (JSONObject)objectParsed;
             dataModel.clear();
             parseData(jsonObject);
-            if(this.informationDelegate!=null)
-                this.informationDelegate.reloadDataWithData(dataModel);
-        } catch (MalformedURLException ex) {
-
-        } catch (IOException ex) {
-
-        } catch (org.json.simple.parser.ParseException e) {
-
+        }
+        catch (MalformedURLException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        catch (IOException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        catch (org.json.simple.parser.ParseException ex)
+        {
+            System.out.println(ex.getMessage());
         }
 
     }

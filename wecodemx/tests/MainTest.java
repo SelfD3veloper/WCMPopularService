@@ -5,6 +5,9 @@ import com.google.inject.Injector;
 import core.common.InformationHandler;
 import core.guice.Module;
 import services.bing.BingService;
+import services.spotify.SpotifyService;
+import services.weather.WeatherService;
+import services.weather.interfaces.WeatherServiceInformationHandler;
 import services.youtube.YoutubeService;
 import services.youtube.enums.YoutubeKey;
 
@@ -25,11 +28,8 @@ import java.util.Map;
 public class MainTest {
     public static void main(String[]WeCodeMx)
     {
-        InformationHandler informationHandler;
-        Injector injector = Guice.createInjector(new Module());
-        informationHandler = injector.getInstance(YoutubeService.class);
-        informationHandler.executeWithValue("pokemon");
-        List<Object> dataModel = informationHandler.getDataModel();
+        List<Object> dataModel = SpotifyTest();
+
         for(Object data : dataModel)
         {
             HashMap<YoutubeKey, Object> information = (HashMap<YoutubeKey, Object>) data;
@@ -39,8 +39,34 @@ public class MainTest {
                 System.out.println(entry.getKey() + " " + entry.getValue());
             }
         }
-        informationHandler = injector.getInstance(BingService.class);
-        informationHandler.executeWithValue("pokemon");
 
+
+    }
+
+    private static List<Object> YoutubeTest()
+    {
+        InformationHandler informationHandler   = null;
+        Injector injector                       = Guice.createInjector(new Module());
+        informationHandler                      = injector.getInstance(YoutubeService.class);
+        informationHandler.executeWithValue("pokemon");
+        return informationHandler.getDataModel();
+    }
+
+    private static List<Object> SpotifyTest()
+    {
+        InformationHandler informationHandler   = null;
+        Injector injector                       = Guice.createInjector(new Module());
+        informationHandler                      = injector.getInstance(SpotifyService.class);
+        informationHandler.executeWithValue("la bamba");
+        return informationHandler.getDataModel();
+    }
+
+    private static List<Object> BingTest()
+    {
+        InformationHandler informationHandler   = null;
+        Injector injector                       = Guice.createInjector(new Module());
+        informationHandler                      = injector.getInstance(BingService.class);
+        informationHandler.executeWithValue("pokemon");
+        return informationHandler.getDataModel();
     }
 }
