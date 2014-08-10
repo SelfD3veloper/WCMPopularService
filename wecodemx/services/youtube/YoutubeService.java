@@ -32,7 +32,7 @@ public class YoutubeService extends RequestService{
     @Override
     public String createUrl(String valueFormatted)
     {
-        return new String("https://gdata.services.youtube.com/feeds/api/videos?q="+valueFormatted+"&max-results=50&v=2&alt=jsonc");
+        return new String("https://gdata.youtube.com/feeds/api/videos?q="+valueFormatted+"&max-results=50&v=2&alt=jsonc");
     }
 
      @Override
