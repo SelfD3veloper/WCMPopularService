@@ -13,7 +13,6 @@ WCMPopularService  is a custom library based in Java for obtain request response
 
 ##Developers
     Carlos Bedoy https://github.com/cbedoy
-    David Garcia https://github.com/idcodeoverflow
 Version
 ----
 
